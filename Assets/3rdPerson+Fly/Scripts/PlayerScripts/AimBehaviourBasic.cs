@@ -10,6 +10,8 @@ public class AimBehaviourBasic : GenericBehaviour
 	public Vector3 aimPivotOffset = new Vector3(0.5f, 1.2f,  0f);         // Offset to repoint the camera when aiming.
 	public Vector3 aimCamOffset   = new Vector3(0f, 0.4f, -0.7f);         // Offset to relocate the camera when aiming.
 
+	private CharacterController controller;
+
 	private int aimBool;                                                  // Animator variable related to aiming.
 	private bool aim;                                                     // Boolean to determine whether or not the player is aiming.
 
@@ -17,6 +19,7 @@ public class AimBehaviourBasic : GenericBehaviour
 	void Start ()
 	{
 		// Set up the references.
+		controller = GetComponent<CharacterController>();
 		aimBool = Animator.StringToHash("Aim");
 	}
 
@@ -45,7 +48,9 @@ public class AimBehaviourBasic : GenericBehaviour
 
 		// Set aim boolean on the Animator Controller.
 		behaviourManager.GetAnim.SetBool (aimBool, aim);
+		
 	}
+	
 
 	// Co-routine to start aiming mode with delay.
 	private IEnumerator ToggleAimOn()

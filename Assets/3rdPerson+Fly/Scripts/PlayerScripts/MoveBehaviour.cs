@@ -25,11 +25,14 @@ public class MoveBehaviour : GenericBehaviour
 		jumpBool = Animator.StringToHash("Jump");
 		groundedBool = Animator.StringToHash("Grounded");
 		behaviourManager.GetAnim.SetBool(groundedBool, true);
-
+		
 		// Subscribe and register this behaviour as the default behaviour.
 		behaviourManager.SubscribeBehaviour(this);
 		behaviourManager.RegisterDefaultBehaviour(this.behaviourCode);
 		speedSeeker = runSpeed;
+		
+		Cursor.lockState = CursorLockMode.Locked;
+		Cursor.visible = false;
 	}
 
 	// Update is used to set features regardless the active behaviour.

@@ -1,3 +1,4 @@
+using System;
 using System.Collections;
 using System.Collections.Generic;
 using UnityEngine;
@@ -33,6 +34,14 @@ public class ShootBehaviour : MonoBehaviour
             GameObject bullet = Instantiate(bulletPrefab, bulletSpawn.position, bulletSpawn.rotation);
             bullet.GetComponent<Rigidbody>().AddForce(hitPoint.normalized * bulletSpeed);
 			
+        }
+    }
+
+    void OnTriggerEnter(Collider other)
+    {
+        if (other.CompareTag("Bullets"))
+        {
+            Destroy(other.gameObject);
         }
     }
 }
